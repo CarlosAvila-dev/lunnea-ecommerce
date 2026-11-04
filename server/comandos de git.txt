@@ -1,0 +1,9 @@
+git add .
+git commit -m "Primer commit: Estructura inicial de Lunnea con client y server"
+git branch -M main
+git remote add origin https://github.com/CarlosAvila-dev/lunnea-ecommerce.git
+git push -u origin main
+
+git config --global user.email "carlosavilafigueroa@outlook.com"
+
+contraseña postgre: Comando78
