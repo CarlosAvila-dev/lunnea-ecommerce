@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lunnea · Velas artesanales</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌙%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head><body>
+<div id="curtain"><svg viewBox="0 0 100 100" fill="none" stroke="#c9b27a" stroke-width="2"><path d="M62 14a38 38 0 1 0 24 62A32 32 0 0 1 62 14z"/><path d="M40 52c-4-7 4-12 3-18 7 5 12 14 6 22-3 4-9 2-9-4z" fill="#d98a3d" stroke="none"/></svg></div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+ <div class="hero-bg"></div><div class="glow" id="glow"></div>
+ <header class="nav" id="nav">
+  <nav><a href="#inicio" class="on">Inicio</a><a href="#nosotros">Nosotros</a><a href="#tienda">Tienda</a><a href="#consejos">Consejos ▾</a></nav>
+  <a class="logo" href="#inicio"><img alt="Lunnea · Velas artesanales" src="assets/logo.jpg"></a>
+  <div class="tools">
+   <label class="search"><input id="q" type="search" placeholder="Buscar velas…" autocomplete="off"></label>
+   <button id="acc" aria-label="Cuenta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 5-7 8-7s7 2 8 7"/></svg></button>
+   <button id="cartBtn" aria-label="Carrito"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 12H6.4zM9 8a3 3 0 0 1 6 0"/></svg><b id="cnt">0</b></button>
+   <button id="bg" class="burger" aria-label="Menú">☰</button>
+  </div>
+ </header>
+ <div class="hero-in">
+  <h1><b>Velas Hechas a Mano</b><br><i class="sc">para</i> <b>Noches Lentas</b></h1>
+  <p>Aromas en lotes pequeños con cera de soya y coco, pabilos de algodón y mezclas de aceites esenciales: una luz limpia y un brillo cálido y duradero.</p>
+  <a class="pill" href="#tienda">Ver novedades <span>→</span></a>
+ </div>
+ <div class="glass"><img src="assets/img/sc1.jpg" alt=""><div><b>Ingredientes limpios</b>Cera de soya y coco, pabilos de algodón sin plomo.</div></div>
+</section>
+<div class="strip"><div id="stripTxt"></div></div>
+
+<main class="wrap">
+ <!-- SCENTS -->
+ <section id="tienda" class="sec"><h2 class="c rv">Compra por <i class="sc">Aromas</i></h2>
+  <div class="scents" id="scents"></div></section>
+
+ <!-- NEW ARRIVALS -->
+ <section class="sec"><div class="hd rv"><h2>Nuevas <i class="sc">Llegadas</i></h2><button class="pill sm" id="all">Ver todos <span>→</span></button></div>
+  <div class="grid" id="grid"></div></section>
+
+ <!-- BANNER -->
+ <section class="banner rv"><div class="bn-bg"></div><div class="bn-in"><h2>Velas Artesanales Para Tus <i class="sc">Momentos Especiales</i></h2><p>Desde nuestro estudio a tu hogar: velas de combustión limpia que hacen que cada momento se sienta un poco más especial.</p><a href="#tienda" class="pill sm light">Ver novedades <span>→</span></a></div></section>
+
+ <!-- BENEFITS -->
+ <section class="ben sec" id="nosotros"><div class="bimg rv"><img src="assets/img/ben.jpg" alt="Elaborando velas"></div>
+  <div class="bgrid">
+   <div class="rv"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7zM7 19a1.5 1.5 0 1 0 0 .1M17 19a1.5 1.5 0 1 0 0 .1"/></svg><h3>Envío gratis</h3><p>En pedidos mayores a $800 MXN a todo el país. Entrega neutra en carbono.</p></div>
+   <div class="rv" style="--i:1"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><h3>Entrega rápida</h3><p>Preparamos y enviamos en menos de 24 horas, con seguimiento por correo.</p></div>
+   <div class="rv" style="--i:2"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3>Pago seguro</h3><p>Pagos cifrados con tarjeta, transferencia o efectivo en tiendas.</p></div>
+   <div class="rv" style="--i:3"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5l2-2v6h-6l2.5-2.5A5.5 5.5 0 1 0 17 14"/></svg><h3>Devolución fácil</h3><p>30 días para cambios, con etiqueta prepagada y reembolso rápido.</p></div>
+  </div></section>
+
+ <!-- TOP SELLING -->
+ <section class="sec"><div class="hd rv"><h2>Las Más <i class="sc">Vendidas</i></h2><button class="pill sm" id="all2">Ver todos <span>→</span></button></div>
+  <div class="carw"><button class="ar l" id="pv" aria-label="Anterior">‹</button><div class="car" id="car"></div><button class="ar r" id="nx" aria-label="Siguiente">›</button></div></section>
+
+ <!-- HOW WE MAKE -->
+ <section class="sec how" id="proceso"><div class="himg rv"><img src="assets/img/how.jpg" alt="Proceso de elaboración"></div>
+  <div><h2 class="rv">Cómo las <i class="sc">Hacemos</i></h2><p class="rv lead">Lotes pequeños con ingredientes limpios y mucho cuidado, para una combustión estable y de bajo humo.</p>
+   <div id="steps"></div><a class="pill sm rv" href="#consejos">Más detalles <span>→</span></a></div></section>
+
+ <!-- TIPS -->
+ <section class="sec" id="consejos"><h2 class="c rv">Consejos de <i class="sc">Lunnea</i></h2>
+  <div class="tips">
+   <article class="rv"><div class="im"><img src="assets/img/tip1.jpg" alt=""></div><h3>Déjala fundir por completo la primera vez</h3><p>Evita el túnel y alarga la vida de tu vela.</p></article>
+   <article class="rv" style="--i:1"><div class="im"><img src="assets/img/tip2.jpg" alt=""></div><h3>Recorta el pabilo a 5 mm</h3><p>Una llama pareja quema limpio y sin humo.</p></article>
+   <article class="rv" style="--i:2"><div class="im"><img src="assets/img/tip3.jpg" alt=""></div><h3>Mantenla lejos de corrientes</h3><p>Sobre una superficie estable y fuera del alcance de niños y mascotas.</p></article>
+  </div></section>
+</main>
+<footer><div class="wrap"><img src="assets/logo.jpg" alt="Lunnea"><span>© 2026 Lunnea · Velas artesanales</span></div></footer>
+
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Carrito"><div class="dh"><h2>Tu carrito</h2><button class="x" data-close>×</button></div>
+ <div class="wickbar" id="wb"></div><div class="items" id="items"></div>
+ <div class="tot"><span>Total</span><span id="tot"></span></div><button class="pill full" id="co">Finalizar compra</button></aside>
+<div class="modal" id="modal" role="dialog" aria-label="Cuenta"><button class="x" data-close>×</button>
+ <h2>Tu <i class="sc">Cuenta</i></h2>
+ <div class="tabs" id="tabs"><button class="on" data-t="login">Iniciar sesión</button><button data-t="register">Crear cuenta</button></div>
+ <form id="af" novalidate>
+  <label class="fld" id="nameF" hidden><span>Nombre</span><input name="name" autocomplete="name"></label>
+  <label class="fld"><span>Correo electrónico</span><input type="email" name="email" required autocomplete="email"></label>
+  <label class="fld"><span>Contraseña</span><input type="password" name="password" required minlength="8" autocomplete="current-password"></label>
+  <div class="msg" id="msg"></div><button class="pill full" id="sub">Entrar</button></form>
+ <div id="sess" hidden><p id="who"></p><button class="pill full" id="out">Cerrar sesión</button></div></div>
+<div class="toast" id="toast"></div>
+<script src="js/script.js"></script>
+</body></html>
