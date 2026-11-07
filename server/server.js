@@ -12,7 +12,6 @@ app.use('/api/auth', authRoutes);
 const paymentRoutes = require('./payments');
 app.use('/api/payments', paymentRoutes);
 
-// Obtener inventario de velas directo de PostgreSQL
 app.get('/api/productos', async (req, res) => {
     try {
         const resultado = await pool.query('SELECT id, n, c, p, i, t, bs FROM productos ORDER BY id ASC');
