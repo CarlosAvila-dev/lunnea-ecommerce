@@ -13,7 +13,9 @@ const store = {
 
 /* Usuarios */
 const Lunnea = {
-    BASE: 'http://localhost:3000/api',
+    BASE: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://localhost:3000/api' 
+        : 'https://lunnea-ecommerce.onrender.com/api',
     async _post(path, body) {
         const r = await fetch(this.BASE + path, {
             method: 'POST',
@@ -46,7 +48,6 @@ const Lunnea = {
         };
     },
     async checkout(items) {
-        // Pide a nuestra API de pagos que cree la preferencia en Mercado Pago
         return this._post('/payments/create-preference', { items });
     }
 };
@@ -95,7 +96,11 @@ function render() {
 
 async function cargarInventario() {
     try {
-        const respuesta = await fetch('http://localhost:3000/api/productos');
+        const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000/api'
+            : 'https://lunnea-ecommerce.onrender.com/api';
+
+        const respuesta = await fetch(`${baseUrl}/productos`);
         const productosDB = await respuesta.json();
         P = productosDB;
         

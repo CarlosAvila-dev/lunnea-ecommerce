@@ -29,9 +29,9 @@ router.post('/create-preference', async (req, res) => {
             body: {
                 items: itemsForMP,
                 back_urls: {
-                    success: 'http://127.0.0.1:3000/success.html',
-                    failure: 'http://127.0.0.1:3000/failure.html',
-                    pending: 'http://127.0.0.1:3000/pending.html'
+                    success: 'https://carlosavila-dev.github.io/lunnea-ecommerce/success.html',
+                    failure: 'https://carlosavila-dev.github.io/lunnea-ecommerce/failure.html',
+                    pending: 'https://carlosavila-dev.github.io/lunnea-ecommerce/pending.html'
                 },
                 auto_return: 'approved'
             }
