@@ -6,6 +6,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const authRoutes = require('./auth');
+app.use('/api/auth', authRoutes);
+
+const paymentRoutes = require('./payments');
+app.use('/api/payments', paymentRoutes);
+
 // Obtener inventario de velas directo de PostgreSQL
 app.get('/api/productos', async (req, res) => {
     try {

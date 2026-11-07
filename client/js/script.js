@@ -11,10 +11,9 @@ const store = {
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch (e) { } }
 };
 
-/* ====== BACKEND: API de Lunnea ====== */
+/* Usuarios */
 const Lunnea = {
-    MOCK: true,
-    BASE: 'https://api.tu-dominio.com',
+    BASE: 'http://localhost:3000/api',
     async _post(path, body) {
         const r = await fetch(this.BASE + path, {
             method: 'POST',
@@ -22,24 +21,37 @@ const Lunnea = {
             body: JSON.stringify(body)
         });
         const j = await r.json().catch(() => ({}));
-        if (!r.ok) throw Error(j.message || 'Ocurrió un error');
+        if (!r.ok) throw Error(j.error || j.message || 'Ocurrió un error');
         return j;
     },
     async register({ name, email, password }) {
-        if (!this.MOCK) return this._post('/auth/register', { name, email, password });
-        return { user: { name: name || email.split('@')[0], email }, token: 'demo' };
+        const data = await this._post('/auth/register', { 
+            nombre: name, 
+            correo: email, 
+            password 
+        });
+        return { 
+            user: { name: data.usuario.nombre, email: data.usuario.correo }, 
+            token: 'real-token' 
+        };
     },
     async login({ email, password }) {
-        if (!this.MOCK) return this._post('/auth/login', { email, password });
-        return { user: { name: email.split('@')[0], email }, token: 'demo' };
+        const data = await this._post('/auth/login', { 
+            correo: email, 
+            password 
+        });
+        return {
+            user: { name: data.user.name, email: data.user.email },
+            token: data.token
+        };
     },
     async checkout(items) {
-        if (!this.MOCK) return this._post('/orders', { items });
-        return { ok: true };
+        // Pide a nuestra API de pagos que cree la preferencia en Mercado Pago
+        return this._post('/payments/create-preference', { items });
     }
 };
 
-/* ====== Catálogo y conexión con el Servidor ====== */
+/* Inventario */
 const CATS = [
     { k: 'jar', n: 'Velas en frasco', i: 'sc1' },
     { k: 'tea', n: 'Té de luz', i: 'sc2' },
@@ -87,20 +99,19 @@ async function cargarInventario() {
         const productosDB = await respuesta.json();
         P = productosDB;
         
-        // Renderizamos las nuevas llegadas
         render();
         
-        // Filtramos las más vendidas o ponemos un respaldo directo con todas o las primeras
         let masVendidas = P.filter(p => p.bs === true || p.bs === 1 || p.bs === '1' || p.bs === 'true');
         if (!masVendidas.length) {
-            masVendidas = P; // Si ninguna está marcada como 'bs', mostramos todo el inventario en el carrusel
+            masVendidas = P; 
         }
         
-        // Inyectamos directo en el carrusel y aseguramos visibilidad
         const carElement = $('#car');
         if (carElement) {
             carElement.innerHTML = masVendidas.map(card).join('');
         }
+
+        drawCart()
             
     } catch (error) {
         console.error('No se pudo conectar con el servidor de Lunnea:', error);
@@ -160,7 +171,7 @@ $('#steps').onclick = e => {
     if (s) $$('.st').forEach(x => x.classList.toggle('on', x === s));
 };
 
-/* ====== Carrito ====== */
+/*Carrito */
 let cart = store.get('lunnea_cart', []);
 const total = () => cart.reduce((a, i) => a + i.p * i.q, 0);
 const count = () => cart.reduce((a, i) => a + i.q, 0);
@@ -259,6 +270,7 @@ function closeAll() {
 
 $('#cartBtn').onclick = () => open($('#drawer'));
 
+/* ====== Botón de Finalizar Compra (Checkout con Mercado Pago) ====== */
 $('#co').onclick = async () => {
     if (!cart.length) return toast('Tu carrito está vacío');
     if (!user) {
@@ -267,8 +279,13 @@ $('#co').onclick = async () => {
     }
     try {
         const r = await Lunnea.checkout(cart);
-        if (r.paymentUrl) location.href = r.paymentUrl;
-        else toast('Pedido listo para conectar con el pago');
+        
+        if (r.initPoint) {
+            // Redirige automáticamente a la pasarela de pruebas de Mercado Pago (Sandbox)
+            location.href = r.initPoint;
+        } else {
+            toast('Error al generar la pasarela de pago');
+        }
     } catch (x) {
         toast(x.message);
     }
@@ -326,7 +343,7 @@ $('#out').onclick = () => {
     toast('Sesión cerrada');
 };
 
-/* ====== Movimiento y Animaciones ====== */
+/* Animaciones */
 let ro;
 function io() {
     ro = ro || new IntersectionObserver(es => es.forEach(e => {
@@ -349,5 +366,4 @@ addEventListener('scroll', () => $('#nav').classList.toggle('fix', scrollY > her
 $('#bg').onclick = () => $('#nav').classList.toggle('open');
 $$('.nav nav a').forEach(a => a.onclick = () => $('#nav').classList.remove('open'));
 
-drawCart();
 drawUser();
