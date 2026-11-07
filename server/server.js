@@ -14,7 +14,7 @@ app.use('/api/payments', paymentRoutes);
 
 app.get('/api/productos', async (req, res) => {
     try {
-        const resultado = await pool.query('SELECT * FROM productos ORDER BY id ASC');
+        const resultado = await pool.query('SELECT id, n, c, p, i, t, bs FROM productos ORDER BY id ASC');
         res.json(resultado.rows);
     } catch (error) {
         console.error('Error al consultar productos:', error);
