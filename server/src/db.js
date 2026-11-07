@@ -3,12 +3,12 @@ require('dotenv').config();
 
 const pool = new Pool(
     process.env.DATABASE_URL
-    family: 4,
         ? {
               connectionString: process.env.DATABASE_URL,
               ssl: {
                   rejectUnauthorized: false
-              }
+              },
+              family: 4
           }
         : {
               user: process.env.DB_USER || 'postgres',
@@ -16,6 +16,7 @@ const pool = new Pool(
               database: process.env.DB_NAME || 'Lunnea DB Local',
               password: process.env.DB_PASSWORD || 'Comando78',
               port: process.env.DB_PORT || 5432,
+              family: 4
           }
 );
 
