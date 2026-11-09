@@ -2,9 +2,10 @@ const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAl
 const fmt = n => '$' + n.toLocaleString('es-MX') + ' MXN', FREE = 800;
 const img = n => {
     if (!n) return '';
-    if (n.startsWith('assets/') || n.startsWith('http')) return n;
-    if (n.startsWith('sc')) return `assets/img/${n}.jpg`;
-    return `assets/img/${n}`;
+    if (n.startsWith('assets/') || n.startsWith('http') || n.startsWith('client/')) return n;
+    const cleanName = n.replace(/\.(jpg|png|jpeg)$/i, '');
+    return `assets/img/${cleanName}.jpg`;
+};
 };
 const store = {
     get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch (e) { return d } },
