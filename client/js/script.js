@@ -55,10 +55,10 @@ const Lunnea = {
 
 /* Inventario */
 const CATS = [
-    { k: 'jar', n: 'Velas en frasco', i: 'sc1' },
-    { k: 'tea', n: 'Té de luz', i: 'sc2' },
-    { k: 'pillar', n: 'Velas pilar', i: 'sc3' },
-    { k: 'party', n: 'Velas de fiesta', i: 'sc4' }
+    { k: 'terra', n: 'Línea Terra', i: 'bosque' },
+    { k: 'umbra', n: 'Línea Umbra', i: 'umbra' },
+    { k: 'solis', n: 'Línea Solis', i: 'solis' },
+    { k: 'aeter', n: 'Línea Aeterna', i: 'aeterna' }
 ];
 
 let P = []; 
@@ -299,7 +299,7 @@ $('#co').onclick = async () => {
 
 document.addEventListener('keydown', e => e.key === 'Escape' && closeAll());
 
-/* ====== Cuenta ====== */
+/* Cuenta*/
 let user = store.get('lunnea_user', null), mode = 'login';
 
 function drawUser() {
